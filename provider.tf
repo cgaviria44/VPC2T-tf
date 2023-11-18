@@ -9,14 +9,16 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = var.region
+  region  = var.region
   profile = var.profile
 }
 
 terraform {
   backend "s3" {
-    bucket = "cgaviria-mybackend-tf"
-    key    = "vpc/dev/terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "ex-backend-tf"
+    key     = "vpc/QA/terraform.tfstate"
+    dynamodb_table = "tf-state-locking"
+    region  = "us-east-1"
+    profile = "eX"
   }
 }

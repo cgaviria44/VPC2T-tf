@@ -11,20 +11,18 @@ module "vpc" {
   public_subnets   = ["10.0.2.0/24", "10.0.3.0/24"]
   database_subnets = ["10.0.4.0/24", "10.0.5.0/24"]
 
-  enable_nat_gateway = true
-  single_nat_gateway = true
+  enable_nat_gateway   = false
+  #single_nat_gateway   = true
   enable_dns_hostnames = true
-
-  enable_ipv6                     = true
-  assign_ipv6_address_on_creation = true
+  enable_ipv6          = true
 
   private_subnet_ipv6_prefixes  = [0, 1]
   public_subnet_ipv6_prefixes   = [2, 3]
   database_subnet_ipv6_prefixes = [4, 5]
 
   tags = {
-    terraform = true
-    environment = var.environment
+    terraform    = true
+    environment  = var.environment
     project_name = var.project_name
   }
 }
